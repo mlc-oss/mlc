@@ -1,1 +1,1 @@
-from .model import FullyConnectedModel
+from .model import FullyConnectedModel, TimeSeriesModel

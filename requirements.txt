@@ -1,4 +1,4 @@
 docker==5.*
-tensorflow==2.6.*
+numpy>=1.19.2
+tensorflow>=2.6.1
 torch
-numpy>=1.21
