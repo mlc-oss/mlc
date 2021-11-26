@@ -9,12 +9,12 @@
 ```python
 import mlc
 ```
-[도메인 초안]
-![image](https://user-images.githubusercontent.com/26168539/143554134-9831732d-4641-4f47-aadb-613626e13d90.png)
+[도메인 초안]  
+![image](https://user-images.githubusercontent.com/26168539/143554134-9831732d-4641-4f47-aadb-613626e13d90.png)  
 
 
-[기술 스택]
-![image](https://user-images.githubusercontent.com/26168539/143553884-870b81eb-0c58-414d-9708-fec507272f79.png)
+[기술 스택]  
+![image](https://user-images.githubusercontent.com/26168539/143553884-870b81eb-0c58-414d-9708-fec507272f79.png)  
  
 
 [기본 MLC 기능]  
