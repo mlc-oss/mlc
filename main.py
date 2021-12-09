@@ -1,7 +1,5 @@
 import docker
 
-import mlc.interops
-
 
 def main():
     try:
@@ -12,8 +10,18 @@ def main():
     containers = client.containers.list()
     print(f'containers: {containers}')
 
-    images = client.images.get('nvcr.io/nvidia/pytorch:21.09-py3')
+    images = client.images.list()
     print(f'images: {images}')
+
+    image = client.images.get('nvcr.io/nvidia/pytorch:21.09-py3')
+    print(f'image: {image}')
+
+    container = client.containers.run(image, command=None, detach=True)
+    print(f'container: {container}')
+    container.logs()
+    # container.kill()
+    container.stop()
+    container.remove()
 
 
 if __name__ == "__main__":

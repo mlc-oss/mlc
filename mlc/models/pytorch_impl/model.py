@@ -16,9 +16,12 @@ class FullyConnectedModel(nn.Module):
 
 class TimeSeriesModel(nn.Module):
 
-    def __init__(self, input_shape, output_shape):
+    def __init__(self, input_shape, output_shape, rnn='lstm'):
         super(TimeSeriesModel, self).__init__()
-        self.rnn = nn.LSTM(input_size=input_shape, hidden_size=output_shape, batch_first=True)
+        if rnn == 'lstm':
+            self.rnn = nn.LSTM(input_size=input_shape, hidden_size=output_shape, batch_first=True)
+        elif rnn == 'gru':
+            self.rnn = nn.GRU(input_size=input_shape, hidden_size=output_shape, batch_first=True)
 
     def forward(self, x):
         x = torch.from_numpy(x).float()

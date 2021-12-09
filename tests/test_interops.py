@@ -60,6 +60,32 @@ class InterOpsTestCase(unittest.TestCase):
 
         self.assertTrue(np.allclose(tf_output, torch_output, rtol=1e-5, atol=1e-6))
 
+    def test_gru_compatibility(self):
+        input_size = 4
+        output_size = 8
+        inputs = np.random.uniform(-1.0, 1.0, (1, 1, input_size))
+
+        tf_model = tensorflow_impl.TimeSeriesModel(input_size, output_size, rnn='gru')
+        torch_model = pytorch_impl.TimeSeriesModel(input_size, output_size, rnn='gru')
+
+        tf_output = tf_model(inputs).numpy()
+        _ = torch_model(inputs)
+
+        w_ih, w_hh, b = tf_model.get_weights() # [(4, 32), (8, 32), (32,)]
+        for m in tuple(torch_model.modules())[1:]:
+            for name, param in m.named_parameters():
+                if 'weight_ih' in name:
+                    param.data = torch.from_numpy(np.transpose(w_ih))
+                elif 'weight_hh' in name:
+                    param.data = torch.from_numpy(np.transpose(w_hh))
+                elif 'bias' in name:
+                    param.data = torch.from_numpy(b)
+
+        torch_output, _ = torch_model(inputs)
+        torch_output = torch_output.detach().numpy()
+
+        self.assertTrue(np.allclose(tf_output, torch_output, rtol=1e-5, atol=1e-6))
+
 
 if __name__ == "__main__":
     unittest.main()

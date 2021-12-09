@@ -14,9 +14,12 @@ class FullyConnectedModel(tf.keras.Model):
 
 class TimeSeriesModel(tf.keras.Model):
 
-    def __init__(self, input_shape, output_shape):
+    def __init__(self, input_shape, output_shape, rnn='lstm'):
         super(TimeSeriesModel, self).__init__()
-        self.rnn = tf.keras.layers.LSTM(output_shape, return_sequences=True)
+        if rnn == 'lstm':
+            self.rnn = tf.keras.layers.LSTM(output_shape, return_sequences=True)
+        elif rnn == 'gru':
+            self.rnn = tf.keras.layers.GRU(output_shape, return_sequences=True)
 
     def call(self, x):
         return self.rnn(x)

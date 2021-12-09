@@ -2,3 +2,4 @@ docker==5.*
 numpy>=1.19.2
 tensorflow>=2.6.1
 torch
+tfx==1.4.0
