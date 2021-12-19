@@ -16,15 +16,6 @@ pool_recycle = 900
 class Database:
     def __init__(self, db_url: str) -> None:
         # production database(depreciated)
-        '''
-        self._engine = create_engine("mysql+pymysql://airflow_webserver:seo1060@211.252.84.114:35000/airflow_webserver"
-            , echo=True,pool_recycle= pool_recycle,
-            pool_pre_ping=True)
-
-
-        self._engine = create_engine("sqlite:///./sql_app.db"
-                                     , connect_args={"check_same_thread": False}, echo=True)
-        '''
         self._engine = create_engine('postgresql+psycopg2://admin:admin@postgres:5432/ktcloud',
                                      # , connect_args={"check_same_thread": False},
                                      pool_pre_ping=True,
