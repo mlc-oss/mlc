@@ -1,0 +1,31 @@
+db:
+  url: "mysql://airflow_webserver:seo1060@211.252.85.114:35000/airflow_webserver"
+
+core:
+  logging:
+    version: 1
+    formatters:
+      formatter:
+        format: "[%(asctime)s] [%(levelname)s] [%(name)s]: %(message)s"
+    handlers:
+      console:
+        class: "logging.StreamHandler"
+        level: "DEBUG"
+        formatter: "formatter"
+        stream: "ext://sys.stderr"
+    root:
+      level: "DEBUG"
+      handlers: ["console"]
+
+gateways:
+
+  database:
+    dsn: ":memory:"
+
+  ktcloud:
+    access_key_id: "KEY"
+    secret_access_key: "SECRET"
+
+services:
+  auth:
+    token_ttl: 3600
