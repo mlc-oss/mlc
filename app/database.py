@@ -16,7 +16,7 @@ pool_recycle = 900
 class Database:
     def __init__(self, db_url: str) -> None:
         # production database(depreciated)
-        self._engine = create_engine('postgresql+psycopg2://admin:admin@postgres:5432/ktcloud',
+        self._engine = create_engine('postgresql+psycopg2://admin:admin@postgres:5432/mlc',
                                      # , connect_args={"check_same_thread": False},
                                      pool_pre_ping=True,
                                      pool_use_lifo=True,

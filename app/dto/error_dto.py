@@ -36,6 +36,6 @@ class AnsibleError(BaseError):
         self.task_type = task_type
 
     def __str__(self) -> str:
-        rst = f'{self.code}: {self.message} \
+        response = f'{self.code}: {self.message} \
                \nError occurred during ansible task execute  {self.task_type}'
-        return rst
+        return response
